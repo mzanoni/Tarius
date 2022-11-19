@@ -5,6 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarius", "src\Tarius\Tarius.csproj", "{BE9B68BB-28E9-400F-B90E-F3D28A0196EB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8C583A79-4FB7-4DDE-A1AC-6501BBE22000}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\backend.yml = .github\workflows\backend.yml
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
