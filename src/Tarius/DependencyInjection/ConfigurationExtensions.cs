@@ -14,10 +14,10 @@ public static class ConfigurationExtensions
     /// <exception cref="InvalidOperationException"></exception>
     public static string GetMachineSpecificConnectionString(this IConfiguration configuration, string connectionStringName)
     {
-        string? userSpecificConnectionString = configuration.GetConnectionString($"{connectionStringName}.{Environment.MachineName}");
+        string? machineSpecificConnectionString = configuration.GetConnectionString($"{connectionStringName}.{Environment.MachineName}");
 
         return
-            userSpecificConnectionString.NullIfEmpty() ??
+            machineSpecificConnectionString.NullIfEmpty() ??
             configuration.GetConnectionString(connectionStringName) ??
             throw new InvalidOperationException($"Unable to get connection string for '{connectionStringName}'.");
     }
