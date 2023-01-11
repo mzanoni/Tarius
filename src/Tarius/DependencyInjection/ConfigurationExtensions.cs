@@ -12,7 +12,7 @@ public static class ConfigurationExtensions
     /// <param name="connectionStringName"></param>
     /// <returns>A connection string</returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public static string GetUserSpecificConnectionString(this IConfiguration configuration, string connectionStringName)
+    public static string GetMachineSpecificConnectionString(this IConfiguration configuration, string connectionStringName)
     {
         string? userSpecificConnectionString = configuration.GetConnectionString($"{connectionStringName}.{Environment.MachineName}");
 
