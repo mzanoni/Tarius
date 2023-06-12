@@ -6,7 +6,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddDefaultDbConnection(this IServiceCollection services, DefaultConnection connection, ServiceLifetime? serviceLifetime = null)
     {
-        services.Add(new ServiceDescriptor(typeof(DbFactory), _ => new DbFactory(connection), serviceLifetime ?? ServiceLifetime.Scoped));
+        services.Add(new ServiceDescriptor(typeof(IDbFactory), _ => new DbFactory(connection), serviceLifetime ?? ServiceLifetime.Scoped));
 
         return services;
     }
@@ -14,7 +14,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddDbConnection<TDbConnection>(this IServiceCollection services, TDbConnection dbConnection, ServiceLifetime? serviceLifetime = null)
         where TDbConnection : Connection
     {
-        services.Add(new ServiceDescriptor(typeof(DbFactory<TDbConnection>), _ => new DbFactory<TDbConnection>(dbConnection), serviceLifetime ?? ServiceLifetime.Scoped));
+        services.Add(new ServiceDescriptor(typeof(IDbFactory<TDbConnection>), _ => new DbFactory<TDbConnection>(dbConnection), serviceLifetime ?? ServiceLifetime.Scoped));
 
         return services;
     }
