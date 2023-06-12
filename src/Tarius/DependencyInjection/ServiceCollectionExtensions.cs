@@ -4,16 +4,18 @@ namespace Tarius.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddDefaultDbConnection(this IServiceCollection services, DefaultConnection connection)
+    public static IServiceCollection AddDefaultDbConnection(this IServiceCollection services, DefaultConnection connection, ServiceLifetime? serviceLifetime = null)
     {
-        return services
-            .AddScoped<IDbFactory>(provider => new DbFactory(connection));
+        services.Add(new ServiceDescriptor(typeof(DbFactory), _ => new DbFactory(connection), serviceLifetime ?? ServiceLifetime.Scoped));
+
+        return services;
     }
 
-    public static IServiceCollection AddDbConnection<TDbConnection>(this IServiceCollection services, TDbConnection dbConnection)
+    public static IServiceCollection AddDbConnection<TDbConnection>(this IServiceCollection services, TDbConnection dbConnection, ServiceLifetime? serviceLifetime = null)
         where TDbConnection : Connection
     {
-        return services
-            .AddScoped<IDbFactory<TDbConnection>>(provider => new DbFactory<TDbConnection>(dbConnection));
+        services.Add(new ServiceDescriptor(typeof(DbFactory<TDbConnection>), _ => new DbFactory<TDbConnection>(dbConnection), serviceLifetime ?? ServiceLifetime.Scoped));
+
+        return services;
     }
 }
