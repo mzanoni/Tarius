@@ -1,14 +1,9 @@
 using System.Data.Common;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Tarius;
 
-public class DefaultConnection : Connection
+public class DefaultConnection(string connectionString) : Connection(connectionString)
 {
-    public DefaultConnection(string connectionString)
-        : base(connectionString)
-    {
-    }
-
     public override DbConnection GetConnection() => new SqlConnection(ConnectionString);
 }
